@@ -1,295 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hostess with the Mostest</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hostess with the Mostest</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #123723;
+      color: white;
+      padding: 40px;
+    }
 
-<style>
+    .card {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #1b4a2e;
+      border-radius: 20px;
+      padding: 30px;
+    }
 
-*{box-sizing:border-box;}
+    .tag {
+      display: inline-block;
+      background: #f3c64d;
+      color: #2f2200;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
 
-html,body{
-margin:0;
-width:100%;
-height:100%;
-font-family:Arial, Helvetica, sans-serif;
-background:radial-gradient(circle at top,#1f5a35 0%,#123723 42%,#091911 100%);
-color:#ffffff;
-overflow:hidden;
-}
+    h1 {
+      margin: 0 0 10px 0;
+      font-size: 52px;
+    }
 
-body{
-display:flex;
-align-items:center;
-justify-content:center;
-padding:24px;
-}
+    .name {
+      font-size: 68px;
+      font-weight: bold;
+      color: #ffd86d;
+      margin: 20px 0;
+    }
 
-.board{
-width:100%;
-max-width:1220px;
-min-height:680px;
-border-radius:30px;
-padding:34px;
-background:linear-gradient(145deg,rgba(255,255,255,0.10),rgba(255,255,255,0.04));
-border:1px solid rgba(255,255,255,0.12);
-box-shadow:0 24px 70px rgba(0,0,0,0.42);
-display:grid;
-grid-template-columns:1.05fr 0.95fr;
-gap:28px;
-position:relative;
-overflow:hidden;
-}
+    .box {
+      background: rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 14px;
+      font-size: 20px;
+      line-height: 1.4;
+    }
 
-/* Background glow */
-
-.glow{
-position:absolute;
-width:430px;
-height:430px;
-border-radius:50%;
-background:rgba(255,214,92,0.14);
-filter:blur(36px);
-right:-120px;
-top:-120px;
-pointer-events:none;
-}
-
-/* Host spotlight glow */
-
-.spotlight{
-position:absolute;
-width:280px;
-height:280px;
-border-radius:50%;
-background:radial-gradient(circle,rgba(255,216,109,0.8),rgba(255,216,109,0.35),rgba(255,216,109,0));
-filter:blur(20px);
-top:50%;
-right:160px;
-transform:translateY(-50%);
-animation:shimmer 4s ease-in-out infinite;
-}
-
-@keyframes shimmer{
-0%{opacity:.5;transform:translateY(-50%) scale(1);}
-50%{opacity:.9;transform:translateY(-50%) scale(1.1);}
-100%{opacity:.5;transform:translateY(-50%) scale(1);}
-}
-
-.left,.right{
-position:relative;
-z-index:1;
-}
-
-.left{
-display:flex;
-flex-direction:column;
-justify-content:center;
-}
-
-.tag{
-display:inline-block;
-padding:10px 18px;
-border-radius:999px;
-background:#f3c64d;
-color:#2f2200;
-font-size:14px;
-font-weight:800;
-letter-spacing:.05em;
-text-transform:uppercase;
-margin-bottom:18px;
-width:fit-content;
-}
-
-h1{
-margin:0 0 12px;
-font-size:58px;
-letter-spacing:-.04em;
-}
-
-.sub{
-font-size:22px;
-line-height:1.4;
-opacity:.92;
-margin-bottom:26px;
-max-width:620px;
-}
-
-.host-name{
-font-size:72px;
-font-weight:900;
-color:#ffd86d;
-margin-bottom:18px;
-letter-spacing:-.05em;
-}
-
-.message-box{
-display:grid;
-gap:14px;
-max-width:640px;
-}
-
-.message-item{
-background:rgba(255,255,255,0.06);
-border-radius:18px;
-padding:16px 18px;
-font-size:18px;
-line-height:1.5;
-}
-
-.right{
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.award-card{
-width:100%;
-max-width:430px;
-background:rgba(255,255,255,0.07);
-border:1px solid rgba(255,255,255,0.12);
-border-radius:28px;
-padding:28px;
-text-align:center;
-position:relative;
-}
-
-.award-icon{
-font-size:72px;
-margin-bottom:16px;
-}
-
-.photo-placeholder{
-width:200px;
-height:240px;
-margin:0 auto 18px auto;
-border:4px dashed rgba(255,216,109,.6);
-border-radius:16px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:14px;
-color:#ffd86d;
-opacity:.7;
-}
-
-.award-title{
-font-size:18px;
-font-weight:800;
-letter-spacing:.08em;
-text-transform:uppercase;
-color:#ffd86d;
-margin-bottom:12px;
-}
-
-.award-name{
-font-size:42px;
-font-weight:900;
-margin-bottom:14px;
-}
-
-.award-copy{
-font-size:18px;
-line-height:1.5;
-opacity:.92;
-margin-bottom:22px;
-}
-
-.ribbon{
-display:inline-block;
-padding:12px 20px;
-border-radius:999px;
-background:#f3c64d;
-color:#2f2200;
-font-size:15px;
-font-weight:900;
-text-transform:uppercase;
-letter-spacing:.05em;
-}
-
-.footer-note{
-margin-top:18px;
-font-size:14px;
-opacity:.78;
-}
-
-@media(max-width:980px){
-.board{grid-template-columns:1fr;}
-h1{font-size:42px;}
-.sub{font-size:18px;}
-.host-name{font-size:56px;}
-.award-name{font-size:34px;}
-}
-
-</style>
+    .badge {
+      display: inline-block;
+      margin-top: 20px;
+      background: #f3c64d;
+      color: #2f2200;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: bold;
+    }
+  </style>
 </head>
-
 <body>
+  <div class="card">
+    <div class="tag">Family Appreciation Day</div>
+    <h1>Hostess with the Mostest</h1>
+    <div class="name">Amiyah-Lee</div>
 
-<div class="board">
+    <div class="box">
+      Thank you for the creativity, the effort, and the love you brought to hosting this gathering.
+    </div>
 
-<div class="glow"></div>
-<div class="spotlight"></div>
+    <div class="box">
+      Your ideas and energy helped make the experience fun and memorable for everyone.
+    </div>
 
-<div class="left">
+    <div class="box">
+      Moments like these become family memories because someone cared enough to make them happen.
+    </div>
 
-<div class="tag">Family Appreciation Day</div>
-
-<h1>Hostess with the Mostest</h1>
-
-<div class="sub">
-Celebrating the person who brought everyone together and made this family moment special.
-</div>
-
-<div class="host-name">Amiyah-Lee</div>
-
-<div class="message-box">
-
-<div class="message-item">
-Thank you for the creativity, the effort, and the love you brought to hosting this gathering.
-</div>
-
-<div class="message-item">
-Your ideas, energy, and personality helped make the experience fun and memorable for everyone.
-</div>
-
-<div class="message-item">
-Moments like these become family memories because someone cared enough to make them happen.
-</div>
-
-</div>
-</div>
-
-<div class="right">
-
-<div class="award-card">
-
-<div class="award-icon">🏆</div>
-
-<div class="photo-placeholder">
-Photo Here
-</div>
-
-<div class="award-title">April Honor</div>
-
-<div class="award-name">Amiyah-Lee</div>
-
-<div class="award-copy">
-For bringing creativity, effort, and heart into hosting a special family gathering.
-</div>
-
-<div class="ribbon">Golden Heart Host</div>
-
-<div class="footer-note">
-With love from the family
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+    <div class="badge">April Honor</div>
+  </div>
 </body>
 </html>
